@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAPUR MIMA TSABIT - Ayam Goreng Bawang Putih Sambal Ijo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#15803d',     /* Emerald/Forest Green for Sambal Ijo */
+                            lightgreen: '#22c55e',/* Vibrant Green */
+                            amber: '#f59e0b',     /* Golden Crispy Garlic Color */
+                            warm: '#fef3c7',      /* Soft Amber Background */
+                            dark: '#1c1917'       /* Warm Dark Neutral */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-hero {
+            background: linear-gradient(135deg, rgba(20, 83, 45, 0.95) 0%, rgba(21, 128, 61, 0.85) 100%), 
+                        url('https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+        }
+        .pulse-btn {
+            animation: pulse-animation 2s infinite;
+        }
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0px rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0px rgba(34, 197, 94, 0); }
+        }
+    </style>
+</head>
+<body class="font-sans bg-amber-50/30 text-stone-800 antialiased selection:bg-brand-green selection:text-white">
+
+    <!-- HEADER NAVBAR -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-amber-100 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2">
+                <div class="w-10 h-10 rounded-full bg-brand-green flex items-center justify-center text-white text-xl font-bold shadow-md">
+                    🧄
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-stone-900 block leading-none">DAPUR MIMA TSABIT</span>
+                    <span class="text-xs text-brand-green font-semibold tracking-wider uppercase">Kuliner Gurih & Pedas</span>
+                </div>
+            </a>
+            <a href="https://wa.me/6281234567890?text=Halo%20Dapur%20Mima%20Tsabit,%20saya%20ingin%20memesan%20Ayam%20Goreng%20Bawang%20Putih%20Sambal%20Ijo!" 
+               target="_blank" 
+               class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all hover:scale-105">
+                <i class="fab fa-whatsapp text-lg"></i>
+                Pesan via WA
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative text-white gradient-hero py-16 md:py-24 px-4 overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <span class="inline-block px-4 py-1.5 bg-amber-500/90 text-stone-950 font-extrabold text-xs md:text-sm rounded-full mb-4 tracking-wide shadow-sm">
+                ✨ BUMBU MERESAP • RENYAH & GURIH ✨
+            </span>
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 tracking-tight drop-shadow-md">
+                Ayam Goreng Bawang Putih <br class="hidden sm:block">
+                <span class="text-amber-300 underline decoration-brand-amber underline-offset-4">Sambal Ijo Mantap!</span>
+            </h1>
+            <p class="text-base md:text-xl text-stone-100 max-w-2xl mx-auto mb-8 font-medium leading-relaxed drop-shadow">
+                Sensasi gurihnya bawang putih yang meresap hingga ke dalam daging empuk, dipadu pedas segarnya Sambal Ijo khas <strong class="text-amber-300">Dapur Mima Tsabit</strong>.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://wa.me/6281234567890?text=Halo%20Dapur%20Mima%20Tsabit,%20saya%20ingin%20memesan%20Ayam%20Goreng%20Bawang%20Putih%20Sambal%20Ijo!" 
+                   target="_blank"
+                   class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-8 py-4 rounded-full text-lg shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 pulse-btn">
+                    <i class="fab fa-whatsapp text-2xl"></i>
+                    Pesan via WhatsApp Now
+                </a>
+                <a href="#menu" class="w-full sm:w-auto bg-stone-900/60 hover:bg-stone-900/80 backdrop-blur-sm text-white font-semibold px-6 py-4 rounded-full text-base transition-all border border-white/20">
+                    Lihat Galeri Makanan
+                </a>
+            </div>
+
+            <!-- Trust Badge -->
+            <div class="mt-10 pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 text-xs md:text-sm text-stone-200">
+                <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-amber-400"></i> 100% Halal</span>
+                <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-amber-400"></i> Bahan Segar Harian</span>
+                <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-amber-400"></i> Tanpa Pengawet</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEUNGGULAN PRODUK -->
+    <section class="py-16 bg-white px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-4xl font-extrabold text-stone-900 mb-3">
+                    Mengapa Harus <span class="text-brand-green">Dapur Mima Tsabit?</span>
+                </h2>
+                <p class="text-stone-600 max-w-xl mx-auto text-sm md:text-base">
+                    Kami menghadirkan cita rasa otentik rumahan dengan kualitas rasa bintang lima.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Feature 1 -->
+                <div class="bg-amber-50/60 rounded-2xl p-6 text-center border border-amber-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-amber-500 text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl shadow-md">
+                        🧄
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-900 mb-2">Bumbu Meresap</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Ayam dimarinasi khas dengan bawang putih segar hingga bumbu meresap sempurna sampai ke tulang.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-emerald-50/60 rounded-2xl p-6 text-center border border-emerald-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-brand-green text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl shadow-md">
+                        🌶️
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-900 mb-2">Sambal Ijo Segar</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Sambal ijo diulek segar setiap hari dengan tingkat kepedasan yang pas & bikin nambah terus.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-amber-50/60 rounded-2xl p-6 text-center border border-amber-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-amber-500 text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl shadow-md">
+                        🍗
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-900 mb-2">Bahan Segar Pilihan</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Menggunakan daging ayam segar potong harian, menjamin tekstur empuk dan rasa manis alami.
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-emerald-50/60 rounded-2xl p-6 text-center border border-emerald-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 bg-brand-green text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl shadow-md">
+                        ✨
+                    </div>
+                    <h3 class="font-bold text-lg text-stone-900 mb-2">Halal & Higienis</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Diolah secara bersih, higienis, 100% Halal, serta bebas dari bahan pengawet buatan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERI FOTO DOKUMENTASI -->
+    <section id="menu" class="py-16 bg-stone-900 text-white px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-amber-400 font-bold text-xs uppercase tracking-widest">Dokumentasi Makanan</span>
+                <h2 class="text-2xl md:text-4xl font-extrabold mt-1">Menggugah Selera Makan Siang Anda</h2>
+                <p class="text-stone-400 max-w-lg mx-auto text-sm md:text-base mt-2">
+                    Foto asli sajian nikmat Ayam Goreng Bawang Putih & Sambal Ijo spesial kami.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Photo 1 -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-stone-800 border border-stone-700">
+                    <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&q=80&w=800" 
+                         alt="Ayam Goreng Bawang Putih" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                         onerror="this.src='https://placehold.co/600x400/15803d/ffffff?text=Ayam+Goreng+Bawang+Putih'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-5 flex flex-col justify-end">
+                        <span class="text-amber-400 font-bold text-sm">Paket Hemat</span>
+                        <h3 class="text-lg font-bold text-white">Ayam Bawang Putih Crisp</h3>
+                    </div>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-stone-800 border border-stone-700">
+                    <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&q=80&w=800" 
+                         alt="Sambal Ijo Khas Dapur Mima" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                         onerror="this.src='https://placehold.co/600x400/15803d/ffffff?text=Sambal+Ijo+Segar'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-5 flex flex-col justify-end">
+                        <span class="text-emerald-400 font-bold text-sm">Spesial Pedas</span>
+                        <h3 class="text-lg font-bold text-white">Sambal Ijo Ulek Segar</h3>
+                    </div>
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-stone-800 border border-stone-700">
+                    <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=800" 
+                         alt="Paket Nasi Ayam Goreng Bawang Putih" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                         onerror="this.src='https://placehold.co/600x400/15803d/ffffff?text=Paket+Lengkap+Nasi+Ayam'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-5 flex flex-col justify-end">
+                        <span class="text-amber-400 font-bold text-sm">Paket Lengkap</span>
+                        <h3 class="text-lg font-bold text-white">Nasi + Ayam + Sambal + Lalapan</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONI VIDEO & RASA -->
+    <section class="py-16 bg-amber-50/40 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-brand-green font-bold text-xs uppercase tracking-widest">Apa Kata Pelanggan?</span>
+                <h2 class="text-2xl md:text-4xl font-extrabold text-stone-900 mt-1">Video Testimoni Rasa</h2>
+                <p class="text-stone-600 max-w-lg mx-auto text-sm md:text-base mt-2">
+                    Dengarkan langsung ulasan jujur dari para pecinta kuliner ayam goreng!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <!-- Video Player Card -->
+                <div class="bg-stone-900 rounded-3xl overflow-hidden shadow-2xl border-4 border-white relative group">
+                    <!-- HTML5 Video Component -->
+                    <div class="relative aspect-video bg-black flex items-center justify-center">
+                        <video id="testiVideo" class="w-full h-full object-cover" poster="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=800">
+                            <!-- Sample royalty-free video -->
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-friends-eating-fast-food-in-a-restaurant-42777-large.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung tag video.
+                        </video>
+                        <!-- Play Overlay Button -->
+                        <button id="playBtn" onclick="togglePlay()" class="absolute w-16 h-16 bg-brand-green/90 hover:bg-brand-green text-white rounded-full flex items-center justify-center text-xl shadow-xl transition-all duration-300 hover:scale-110">
+                            <i class="fas fa-play ml-1"></i>
+                        </button>
+                    </div>
+                    <div class="p-5 bg-stone-900 text-white flex items-center justify-between">
+                        <div>
+                            <h4 class="font-bold text-base">"Bumbunya Ngeresep Banget!"</h4>
+                            <p class="text-xs text-stone-400">Kak Rahma - Food Vlogger / Pelanggan Setia</p>
+                        </div>
+                        <div class="flex text-amber-400 text-xs">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Reviews / Highlights -->
+                <div class="space-y-4">
+                    <!-- Review Item 1 -->
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/80 flex gap-4 items-start">
+                        <div class="w-10 h-10 rounded-full bg-emerald-100 text-brand-green font-bold flex items-center justify-center flex-shrink-0">
+                            B
+                        </div>
+                        <div>
+                            <div class="flex text-amber-400 text-xs mb-1">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-stone-700 text-sm italic">"Ayamnya krispi di luar tapi wangi bawang putihnya dapet banget! Sambal ijonya nagih pedas gurih, pas di lidah!"</p>
+                            <span class="text-xs text-stone-400 font-semibold mt-2 block">— Budi S., Jakarta</span>
+                        </div>
+                    </div>
+
+                    <!-- Review Item 2 -->
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/80 flex gap-4 items-start">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 font-bold flex items-center justify-center flex-shrink-0">
+                            S
+                        </div>
+                        <div>
+                            <div class="flex text-amber-400 text-xs mb-1">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-stone-700 text-sm italic">"Sering pesen buat makan siang kantor. Porsinya mantap, ayamnya lembut gak kering, sambalnya jos!"</p>
+                            <span class="text-xs text-stone-400 font-semibold mt-2 block">— Siti N., Bogor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA ORDER SECTION -->
+    <section class="py-16 bg-gradient-to-r from-emerald-800 to-brand-green text-white px-4 text-center">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Lapar? Langsung Pesan Sekarang!</h2>
+            <p class="text-emerald-100 text-base md:text-lg mb-8 leading-relaxed">
+                Siap melayani pesanan harian, acara keluarga, hingga catering kantor. Siap kirim langsung ke tempat Anda!
+            </p>
+            <a href="https://wa.me/6281234567890?text=Halo%20Dapur%20Mima%20Tsabit,%20saya%20ingin%20memesan%20Ayam%20Goreng%20Bawang%20Putih%20Sambal%20Ijo!" 
+               target="_blank"
+               class="inline-flex items-center gap-3 bg-amber-400 hover:bg-amber-300 text-stone-950 font-extrabold px-9 py-4 rounded-full text-lg shadow-2xl transition-all duration-300 hover:scale-105">
+                <i class="fab fa-whatsapp text-2xl"></i>
+                Pesan Langsung via WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-950 text-stone-400 py-8 px-4 text-center text-sm border-t border-stone-800">
+        <div class="max-w-5xl mx-auto space-y-3">
+            <p class="font-bold text-stone-200">DAPUR MIMA TSABIT © 2026</p>
+            <p class="text-xs text-stone-500">Sajian Ayam Goreng Bawang Putih Sambal Ijo Terlezat untuk Keluarga Anda.</p>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON (FOR MOBILE EASY ACCESS) -->
+    <a href="https://wa.me/6281234567890?text=Halo%20Dapur%20Mima%20Tsabit,%20saya%20ingin%20memesan%20Ayam%20Goreng%20Bawang%20Putih%20Sambal%20Ijo!" 
+       target="_blank"
+       aria-label="Pesan WhatsApp"
+       class="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl transition-all duration-300 hover:scale-110 pulse-btn border-2 border-white">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JAVASCRIPT FOR VIDEO PLAYER -->
+    <script>
+        function togglePlay() {
+            const video = document.getElementById('testiVideo');
+            const btn = document.getElementById('playBtn');
+            if (video.paused) {
+                video.play();
+                btn.style.opacity = '0';
+            } else {
+                video.pause();
+                btn.style.opacity = '1';
+            }
+        }
+
+        // Re-show button when video ends
+        document.getElementById('testiVideo').addEventListener('ended', function() {
+            document.getElementById('playBtn').style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
