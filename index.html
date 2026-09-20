@@ -3,295 +3,735 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAPUR MIMA TSABIT - Ayam Goreng Bawang Putih Sambal Ijo</title>
-    
-    <!-- FAVICON / LOGO TAB BROWSER -->
-    <!-- Ganti 'logo.png' dengan nama file logo Anda (misal: logo.jpg, logo.png, atau URL link logo) -->
+    <title>Dapur Mima Tsabit - Dari Dapur Mima, Untuk Keluarga Tercinta</title>
+    <!-- Favicon using Logo.png -->
     <link rel="icon" type="image/png" href="Logo.png">
-    <link rel="apple-touch-icon" href="Logo.png">
-
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter & Plus Jakarta Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         brand: {
-                            green: '#15803d',     /* Emerald/Forest Green for Sambal Ijo */
-                            lightgreen: '#22c55e',/* Vibrant Green */
-                            amber: '#f59e0b',     /* Golden Crispy Garlic Color */
-                            warm: '#fef3c7',      /* Soft Amber Background */
-                            dark: '#1c1917'       /* Warm Dark Neutral */
+                            50: '#fdf8f5',
+                            100: '#fbeee6',
+                            200: '#f5d9c7',
+                            300: '#edb99c',
+                            400: '#e29169',
+                            500: '#d56f3e',
+                            600: '#c4552b',
+                            700: '#a34221',
+                            800: '#84371f',
+                            900: '#6c301d',
+                            950: '#39160d',
+                        },
+                        cream: {
+                            50: '#fffdf9',
+                            100: '#fef7ec',
+                            200: '#fcf0d8',
+                            300: '#f7e2b3',
+                            400: '#f2cc81',
                         }
                     },
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
-        .gradient-hero {
-            background: linear-gradient(135deg, rgba(20, 83, 45, 0.95) 0%, rgba(21, 128, 61, 0.85) 100%), 
-                        url('https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&q=80&w=1200');
-            background-size: cover;
-            background-position: center;
-        }
-        .pulse-btn {
-            animation: pulse-animation 2s infinite;
-        }
-        @keyframes pulse-animation {
-            0% { box-shadow: 0 0 0 0px rgba(34, 197, 94, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
-            100% { box-shadow: 0 0 0 0px rgba(34, 197, 94, 0); }
-        }
+        body { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #fef7ec; }
+        ::-webkit-scrollbar-thumb { background: #d56f3e; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #a34221; }
     </style>
 </head>
-<body class="font-sans bg-amber-50/30 text-stone-800 antialiased selection:bg-brand-green selection:text-white">
+<body class="bg-cream-50 text-brand-950 antialiased selection:bg-brand-500 selection:text-white">
 
-    <!-- HEADER NAVBAR -->
-    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-amber-100 shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2">
-                <div class="w-10 h-10 rounded-full bg-brand-green flex items-center justify-center text-white text-xl font-bold shadow-md">
+    <!-- Floating Image Customizer Modal Button -->
+    <!-- Image Manager Modal -->
+    <div id="image-manager-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative border border-brand-200">
+            <button onclick="toggleImageManager()" class="absolute top-6 right-6 text-brand-900 hover:text-brand-500 text-xl font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-brand-100 text-brand-600 p-3 rounded-xl text-xl">
+                    <i class="fa-solid fa-pen-to-square"></i>
                 </div>
                 <div>
-                    <span class="text-xl font-extrabold tracking-tight text-stone-900 block leading-none">DAPUR MIMA TSABIT</span>
-                    <span class="text-xs text-brand-green font-semibold tracking-wider uppercase">Kuliner Gurih & Pedas</span>
+                    <h3 class="font-serif font-bold text-xl sm:text-2xl text-brand-950">Kelola & Ubah Gambar</h3>
+                    <p class="text-xs sm:text-sm text-brand-600">Masukkan link URL gambar baru untuk memperbarui tampilan secara instan.</p>
                 </div>
-            </a>
-            <a href="https://wa.me/6281234567890?text=Halo%20Dapur%20Mima%20Tsabit,%20saya%20ingin%20memesan%20Ayam%20Goreng%20Bawang%20Putih%20Sambal%20Ijo!" 
-               target="_blank" 
-               class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all hover:scale-105">
-                <i class="fab fa-whatsapp text-lg"></i>
-                Pesan via WA
+            </div>
+
+            <div class="space-y-4" id="image-inputs-container">
+                <!-- Dynamically populated inputs -->
+            </div>
+
+            <div class="mt-8 flex justify-end gap-3 pt-4 border-t border-cream-200">
+                <button onclick="toggleImageManager()" class="px-5 py-2.5 rounded-xl border border-brand-200 text-brand-900 font-semibold text-sm hover:bg-cream-100">Tutup</button>
+                <button onclick="applyNewImages()" class="px-6 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-semibold text-sm shadow">Terapkan Gambar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-cream-100/95 backdrop-blur-md shadow-sm border-b border-brand-200/40 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Brand Name -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <img src="Logo.png" alt="Dapur Mima Tsabit" class="w-12 h-12 rounded-full object-cover shadow-md ring-2 ring-brand-500/30 group-hover:scale-105 transition-transform">
+                    <div>
+                        <span class="font-serif font-bold text-xl sm:text-2xl text-brand-900 tracking-tight block">Dapur Mima Tsabit</span>
+                        <span class="text-xs text-brand-600 font-medium tracking-wide">Rumahan, Higienis & Lezat</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-brand-900">
+                    <a href="#beranda" class="hover:text-brand-500 transition-colors">Beranda</a>
+                    <a href="#profil" class="hover:text-brand-500 transition-colors">Profil</a>
+                    <a href="#sejarah" class="hover:text-brand-500 transition-colors">Sejarah</a>
+                    <a href="#menu" class="hover:text-brand-500 transition-colors">Menu & Harga</a>
+                    <a href="#bestseller" class="hover:text-brand-500 transition-colors">Best Seller</a>
+                    <a href="#testimoni" class="hover:text-brand-500 transition-colors">Ulasan</a>
+                    <a href="#lokasi" class="hover:text-brand-500 transition-colors">Lokasi</a>
+                    <a href="#pesan" class="hover:text-brand-500 transition-colors">Pemesanan</a>
+                </nav>
+
+                <!-- CTA WhatsApp Header -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="#wa-form" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full font-semibold text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Pesan Cepat</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-brand-900 hover:text-brand-500 p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-cream-100 border-b border-brand-200 px-6 py-4 space-y-3 shadow-lg">
+            <a href="#beranda" class="block font-medium text-brand-900 hover:text-brand-500 py-1 mobile-link">Beranda</a>
+            <a href="#profil" class="block font-medium text-brand-900 hover:text-brand-500 py-1 mobile-link">Profil</a>
+            <a href="#sejarah" class="block font-medium text-brand-900 hover:text-brand-500 py-1 mobile-link">Sejarah</a>
+            <a href="#menu" class="block font-medium text-brand-900 hover:text-brand-500 py-1 mobile-link">Menu & Harga</a>
+            <a href="#bestseller" class="block font-medium text-brand-900 hover:text-brand-500 py-1 mobile-link">Best Seller</a>
+            <a href="#testimoni" class="block font-medium text-brand-900 hover:text-brand-500 py-1 mobile-link">Ulasan</a>
+            <a href="#lokasi" class="block font-medium text-brand-900 hover:text-brand-500 py-1 mobile-link">Lokasi</a>
+            <a href="#pesan" class="block font-medium text-brand-900 hover:text-brand-500 py-1 mobile-link">Pemesanan Online</a>
+            <a href="#wa-form" class="block w-full text-center bg-emerald-600 text-white py-2 rounded-lg font-medium shadow mobile-link mt-2">
+                <i class="fa-brands fa-whatsapp mr-2"></i> WhatsApp Langsung
             </a>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="relative text-white gradient-hero py-16 md:py-24 px-4 overflow-hidden">
-        <div class="max-w-5xl mx-auto text-center relative z-10">
-            <span class="inline-block px-4 py-1.5 bg-amber-500/90 text-stone-950 font-extrabold text-xs md:text-sm rounded-full mb-4 tracking-wide shadow-sm">
-                ✨ BUMBU MERESAP • RENYAH & GURIH ✨
-            </span>
-            <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 tracking-tight drop-shadow-md">
-                Ayam Goreng Bawang Putih <br class="hidden sm:block">
-                <span class="text-amber-300 underline decoration-brand-amber underline-offset-4">Sambal Ijo Mantap!</span>
-            </h1>
-            <p class="text-base md:text-xl text-stone-100 max-w-2xl mx-auto mb-8 font-medium leading-relaxed drop-shadow">
-                Sensasi gurihnya bawang putih yang meresap hingga ke dalam daging empuk, dipadu pedas segarnya Sambal Ijo khas <strong class="text-amber-300">Dapur Mima Tsabit</strong>.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="https://wa.me/6281234567890?text=Halo%20Dapur%20Mima%20Tsabit,%20saya%20ingin%20memesan%20Ayam%20Goreng%20Bawang%20Putih%20Sambal%20Ijo!" 
-                   target="_blank"
-                   class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold px-8 py-4 rounded-full text-lg shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 pulse-btn">
-                    <i class="fab fa-whatsapp text-2xl"></i>
-                    Pesan via WhatsApp Now
-                </a>
-                <a href="#menu" class="w-full sm:w-auto bg-stone-900/60 hover:bg-stone-900/80 backdrop-blur-sm text-white font-semibold px-6 py-4 rounded-full text-base transition-all border border-white/20">
-                    Lihat Galeri Makanan
-                </a>
+    <!-- Hero / Slideshow Section -->
+    <section id="beranda" class="relative overflow-hidden bg-brand-950 text-white min-h-[580px] sm:min-h-[640px] flex items-center">
+        <!-- Slideshow Container -->
+        <div id="slideshow-container" class="absolute inset-0 z-0">
+            <!-- Slide 1 -->
+            <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-100">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10"></div>
+                <img src="logo.png" alt="Masakan Rumahan Lezat" class="editable-img w-full h-full object-cover" data-id="slide-1">
             </div>
-
-            <!-- Trust Badge -->
-            <div class="mt-10 pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 text-xs md:text-sm text-stone-200">
-                <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-amber-400"></i> 100% Halal</span>
-                <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-amber-400"></i> Bahan Segar Harian</span>
-                <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-amber-400"></i> Tanpa Pengawet</span>
+            <!-- Slide 2 -->
+            <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10"></div>
+                <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1920&q=80" alt="Cemilan & Jajanan Pasar" class="editable-img w-full h-full object-cover" data-id="slide-2">
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10"></div>
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1920&q=80" alt="Hidangan Spesial Keluarga" class="editable-img w-full h-full object-cover" data-id="slide-3">
             </div>
         </div>
-    </section>
 
-    <!-- KEUNGGULAN PRODUK -->
-    <section class="py-16 bg-white px-4">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-2xl md:text-4xl font-extrabold text-stone-900 mb-3">
-                    Mengapa Harus <span class="text-brand-green">Dapur Mima Tsabit?</span>
-                </h2>
-                <p class="text-stone-600 max-w-xl mx-auto text-sm md:text-base">
-                    Kami menghadirkan cita rasa otentik rumahan dengan kualitas rasa bintang lima.
+        <!-- Hero Content -->
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+            <div class="max-w-2xl">
+                <span class="inline-flex items-center gap-2 bg-brand-500/30 backdrop-blur-md text-cream-200 border border-brand-400/30 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold mb-6 shadow-sm">
+                    <i class="fa-solid fa-heart text-red-400"></i> Autentik, Halal & Higienis
+                </span>
+                <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6 text-cream-50">
+                    Dari Dapur Mima, <br><span class="text-brand-400">Untuk Keluarga Tercinta</span>
+                </h1>
+                <p class="text-base sm:text-lg text-cream-100/90 mb-8 leading-relaxed font-light">
+                    Menyediakan aneka masakan rumahan siap saji, lauk pauk tradisional, cemilan nikmat, serta kue buatan rumahan dengan resep turun-temurun yang menggugah selera dan bernutrisi.
                 </p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Feature 1 -->
-                <div class="bg-amber-50/60 rounded-2xl p-6 text-center border border-amber-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-amber-500 text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl shadow-md">
-                        🧄
-                    </div>
-                    <h3 class="font-bold text-lg text-stone-900 mb-2">Bumbu Meresap</h3>
-                    <p class="text-sm text-stone-600 leading-relaxed">
-                        Ayam dimarinasi khas dengan bawang putih segar hingga bumbu meresap sempurna sampai ke tulang.
-                    </p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="bg-emerald-50/60 rounded-2xl p-6 text-center border border-emerald-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-brand-green text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl shadow-md">
-                        🌶️
-                    </div>
-                    <h3 class="font-bold text-lg text-stone-900 mb-2">Sambal Ijo Segar</h3>
-                    <p class="text-sm text-stone-600 leading-relaxed">
-                        Sambal ijo diulek segar setiap hari dengan tingkat kepedasan yang pas & bikin nambah terus.
-                    </p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="bg-amber-50/60 rounded-2xl p-6 text-center border border-amber-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-amber-500 text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl shadow-md">
-                        🍗
-                    </div>
-                    <h3 class="font-bold text-lg text-stone-900 mb-2">Bahan Segar Pilihan</h3>
-                    <p class="text-sm text-stone-600 leading-relaxed">
-                        Menggunakan daging ayam segar potong harian, menjamin tekstur empuk dan rasa manis alami.
-                    </p>
-                </div>
-
-                <!-- Feature 4 -->
-                <div class="bg-emerald-50/60 rounded-2xl p-6 text-center border border-emerald-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-brand-green text-white rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl shadow-md">
-                        ✨
-                    </div>
-                    <h3 class="font-bold text-lg text-stone-900 mb-2">Halal & Higienis</h3>
-                    <p class="text-sm text-stone-600 leading-relaxed">
-                        Diolah secara bersih, higienis, 100% Halal, serta bebas dari bahan pengawet buatan.
-                    </p>
+                <div class="flex flex-wrap items-center gap-4">
+                    <a href="#menu" class="bg-brand-500 hover:bg-brand-600 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-brand-500/30 transition-all flex items-center gap-2 text-base">
+                        <span>Lihat Menu & Harga</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#wa-form" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 font-semibold px-8 py-3.5 rounded-xl transition-all flex items-center gap-2 text-base">
+                        <i class="fa-brands fa-whatsapp text-xl text-emerald-400"></i>
+                        <span>Pesan via WhatsApp</span>
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- GALERI FOTO DOKUMENTASI -->
-    <section id="menu" class="py-16 bg-stone-900 text-white px-4">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-12">
-                <span class="text-amber-400 font-bold text-xs uppercase tracking-widest">Dokumentasi Makanan</span>
-                <h2 class="text-2xl md:text-4xl font-extrabold mt-1">Menggugah Selera Makan Siang Anda</h2>
-                <p class="text-stone-400 max-w-lg mx-auto text-sm md:text-base mt-2">
-                    Foto asli sajian nikmat Ayam Goreng Bawang Putih & Sambal Ijo spesial kami.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Photo 1 -->
-                <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-stone-800 border border-stone-700">
-                    <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&q=80&w=800" 
-                         alt="Ayam Goreng Bawang Putih" 
-                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
-                         onerror="this.src='https://placehold.co/600x400/15803d/ffffff?text=Ayam+Goreng+Bawang+Putih'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-5 flex flex-col justify-end">
-                        <span class="text-amber-400 font-bold text-sm">Paket Hemat</span>
-                        <h3 class="text-lg font-bold text-white">Ayam Bawang Putih Crisp</h3>
-                    </div>
-                </div>
-
-                <!-- Photo 2 -->
-                <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-stone-800 border border-stone-700">
-                    <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&q=80&w=800" 
-                         alt="Sambal Ijo Khas Dapur Mima" 
-                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
-                         onerror="this.src='https://placehold.co/600x400/15803d/ffffff?text=Sambal+Ijo+Segar'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-5 flex flex-col justify-end">
-                        <span class="text-emerald-400 font-bold text-sm">Spesial Pedas</span>
-                        <h3 class="text-lg font-bold text-white">Sambal Ijo Ulek Segar</h3>
-                    </div>
-                </div>
-
-                <!-- Photo 3 -->
-                <div class="group relative rounded-2xl overflow-hidden shadow-lg bg-stone-800 border border-stone-700">
-                    <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=800" 
-                         alt="Paket Nasi Ayam Goreng Bawang Putih" 
-                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
-                         onerror="this.src='https://placehold.co/600x400/15803d/ffffff?text=Paket+Lengkap+Nasi+Ayam'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-5 flex flex-col justify-end">
-                        <span class="text-amber-400 font-bold text-sm">Paket Lengkap</span>
-                        <h3 class="text-lg font-bold text-white">Nasi + Ayam + Sambal + Lalapan</h3>
-                    </div>
-                </div>
-            </div>
+        <!-- Slide Indicators -->
+        <div class="absolute bottom-6 right-6 z-20 flex items-center gap-2">
+            <button onclick="currentSlide(0)" class="slide-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"></button>
+            <button onclick="currentSlide(1)" class="slide-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"></button>
+            <button onclick="currentSlide(2)" class="slide-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"></button>
         </div>
     </section>
 
-    <!-- TESTIMONI VIDEO & RASA -->
-    <section class="py-16 bg-amber-50/40 px-4">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-12">
-                <span class="text-brand-green font-bold text-xs uppercase tracking-widest">Apa Kata Pelanggan?</span>
-                <h2 class="text-2xl md:text-4xl font-extrabold text-stone-900 mt-1">Video Testimoni Rasa</h2>
-                <p class="text-stone-600 max-w-lg mx-auto text-sm md:text-base mt-2">
-                    Dengarkan langsung ulasan jujur dari para pecinta kuliner ayam goreng!
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <!-- Video Player Card -->
-                <div class="bg-stone-900 rounded-3xl overflow-hidden shadow-2xl border-4 border-white relative group">
-                    <!-- HTML5 Video Component -->
-                    <div class="relative aspect-video bg-black flex items-center justify-center">
-                        <video id="testiVideo" class="w-full h-full object-cover" poster="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=800">
-                            <!-- Sample royalty-free video -->
-                            <source src="https://assets.mixkit.co/videos/preview/mixkit-friends-eating-fast-food-in-a-restaurant-42777-large.mp4" type="video/mp4">
-                            Browser Anda tidak mendukung tag video.
-                        </video>
-                        <!-- Play Overlay Button -->
-                        <button id="playBtn" onclick="togglePlay()" class="absolute w-16 h-16 bg-brand-green/90 hover:bg-brand-green text-white rounded-full flex items-center justify-center text-xl shadow-xl transition-all duration-300 hover:scale-110">
-                            <i class="fas fa-play ml-1"></i>
-                        </button>
-                    </div>
-                    <div class="p-5 bg-stone-900 text-white flex items-center justify-between">
+    <!-- Profil & Sejarah Section -->
+    <section id="profil" class="py-20 bg-cream-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left: Profile Image & Badges -->
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-brand-200/50 rounded-3xl -z-10 transform -rotate-2"></div>
+                    <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80" alt="Dapur Mima Tsabit Aktivitas" class="editable-img rounded-2xl shadow-xl w-full h-[400px] object-cover" data-id="profil-img">
+                    <div class="absolute bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl border border-cream-200 hidden sm:flex items-center gap-4">
+                        <div class="bg-brand-500 text-white w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
                         <div>
-                            <h4 class="font-bold text-base">"Bumbunya Ngeresep Banget!"</h4>
-                            <p class="text-xs text-stone-400">Kak Rahma - Food Vlogger / Pelanggan Setia</p>
-                        </div>
-                        <div class="flex text-amber-400 text-xs">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <p class="text-xs text-brand-600 font-semibold uppercase">Kualitas Terjaga</p>
+                            <p class="text-sm font-bold text-brand-950">100% Bahan Alami & Segar</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Text Reviews / Highlights -->
+                <!-- Right: Profile & Sejarah Info -->
+                <div class="space-y-6">
+                    <div>
+                        <span class="text-brand-600 font-semibold text-sm uppercase tracking-wider block mb-2">Profil & Visi Misi</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-950">Mengenal Lebih Dekat Dapur Mima Tsabit</h2>
+                    </div>
+                    <p class="text-brand-900/80 leading-relaxed text-base">
+                        <strong>Dapur Mima Tsabit</strong> lahir dari kecintaan mendalam terhadap dunia kuliner rumahan. Kami menyajikan masakan sehari-hari yang bersih, sehat, tanpa pengawet buatan, dan diracik dengan bumbu rempah pilihan khas nusantara seolah dimasak langsung untuk keluarga tersayang di rumah.
+                    </p>
+
+                    <div id="sejarah" class="pt-4 border-t border-brand-200">
+                        <h3 class="font-serif text-2xl font-bold text-brand-900 mb-3">Sejarah Singkat</h3>
+                        <p class="text-brand-900/80 leading-relaxed text-base">
+                            Berawal dari dapur rumah tangga kecil di tahun 2018 dengan pesanan dari tetangga dan kerabat dekat yang menyukai cita rasa masakan Mima. Berkat konsistensi rasa yang gurih, bersih, dan pelayanan yang ramah, kini Dapur Mima Tsabit berkembang menjadi andalan keluarga dalam menyediakan hidangan harian, tumpengan, nasi box, hingga aneka cemilan gurih dan manis berkualitas tinggi.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <div class="bg-white p-4 rounded-xl border border-brand-200/60 shadow-sm">
+                            <i class="fa-solid fa-shield-heart text-brand-500 text-2xl mb-2"></i>
+                            <h4 class="font-bold text-brand-950 text-sm">Higienis & Halal</h4>
+                            <p class="text-xs text-brand-700/80 mt-1">Kebersihan dapur dan kehalalan bahan adalah prioritas utama kami.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-brand-200/60 shadow-sm">
+                            <i class="fa-solid fa-fire-burner text-brand-500 text-2xl mb-2"></i>
+                            <h4 class="font-bold text-brand-950 text-sm">Selalu Fresh</h4>
+                            <p class="text-xs text-brand-700/80 mt-1">Dimasak setiap hari setelah pesanan masuk (made by order).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu & Harga Section -->
+    <section id="menu" class="py-20 bg-cream-100/60 border-t border-brand-200/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-brand-600 font-semibold text-sm uppercase tracking-wider block mb-2">Daftar Menu & Harga</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-950">Pilihan Lezat Untuk Setiap Selera</h2>
+                <p class="text-brand-900/80 mt-2 text-sm sm:text-base">Temukan menu masakan rumahan, lauk pauk, dan cemilan favorit Anda dengan harga terjangkau.</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+                <button onclick="filterMenu('all')" class="filter-btn active-filter bg-brand-500 text-white px-5 py-2 rounded-full text-sm font-semibold shadow transition-all hover:bg-brand-600">Semua Menu</button>
+                <button onclick="filterMenu('masakan')" class="filter-btn bg-white text-brand-950 border border-brand-200 px-5 py-2 rounded-full text-sm font-semibold shadow-sm transition-all hover:bg-brand-500 hover:text-white">Masakan Rumah</button>
+                <button onclick="filterMenu('lauk')" class="filter-btn bg-white text-brand-950 border border-brand-200 px-5 py-2 rounded-full text-sm font-semibold shadow-sm transition-all hover:bg-brand-500 hover:text-white">Lauk Pauk</button>
+                <button onclick="filterMenu('cemilan')" class="filter-btn bg-white text-brand-950 border border-brand-200 px-5 py-2 rounded-full text-sm font-semibold shadow-sm transition-all hover:bg-brand-500 hover:text-white">Cemilan & Kue</button>
+                <button onclick="filterMenu('paket')" class="filter-btn bg-white text-brand-950 border border-brand-200 px-5 py-2 rounded-full text-sm font-semibold shadow-sm transition-all hover:bg-brand-500 hover:text-white">Paket & Box</button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Item 1 -->
+                <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-md border border-brand-200/60 hover:shadow-xl transition-all flex flex-col" data-category="masakan">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=80" alt="Nasi Liwet Komplit" class="editable-img w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-id="menu-1">
+                        <span class="absolute top-3 right-3 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Best Seller</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-lg text-brand-950">Nasi Liwet Sunda Komplit</h3>
+                                <span class="font-bold text-brand-600 text-base">Rp 35.000</span>
+                            </div>
+                            <p class="text-brand-900/70 text-xs sm:text-sm line-clamp-2 mb-4">Nasi liwet gurih dengan teri medan, ayam goreng lengkuas, tahu tempe, lalapan segar, dan sambal terasi dadakan.</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-brand-100">
+                            <span class="text-xs font-semibold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-md">Masakan Rumah</span>
+                            <button onclick="orderItem('Nasi Liwet Sunda Komplit', 35000)" class="bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow">
+                                <i class="fa-solid fa-cart-shopping"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-md border border-brand-200/60 hover:shadow-xl transition-all flex flex-col" data-category="lauk">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=600&q=80" alt="Ayam Goreng Lengkuas" class="editable-img w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-id="menu-2">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-lg text-brand-950">Ayam Chicken(1 Ekor)</h3>
+                                <span class="font-bold text-brand-600 text-base">Rp 75.000</span>
+                            </div>
+                            <p class="text-brand-900/70 text-xs sm:text-sm line-clamp-2 mb-4">Ayam kampung pilihan ungkep bumbu rempah gurih lengkap dengan taburan serundeng lengkuas yang melimpah dan gurih.</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-brand-100">
+                            <span class="text-xs font-semibold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-md">Lauk Pauk</span>
+                            <button onclick="orderItem('Ayam Goreng Lengkuas (1 Ekor)', 75000)" class="bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow">
+                                <i class="fa-solid fa-cart-shopping"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-md border border-brand-200/60 hover:shadow-xl transition-all flex flex-col" data-category="cemilan">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80" alt="Risoles Ragout Special" class="editable-img w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-id="menu-3">
+                        <span class="absolute top-3 right-3 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Best Seller</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-lg text-brand-950">Risoles Ragout Ayam Sayur (Isi 5)</h3>
+                                <span class="font-bold text-brand-600 text-base">Rp 25.000</span>
+                            </div>
+                            <p class="text-brand-900/70 text-xs sm:text-sm line-clamp-2 mb-4">Kulit risoles lembut dengan isian ragout ayam, wortel, dan kentang bertekstur creamy gurih, dilapisi tepung panir renyah.</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-brand-100">
+                            <span class="text-xs font-semibold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-md">Cemilan & Kue</span>
+                            <button onclick="orderItem('Risoles Ragout Ayam Sayur (Isi 5)', 25000)" class="bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow">
+                                <i class="fa-solid fa-cart-shopping"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-md border border-brand-200/60 hover:shadow-xl transition-all flex flex-col" data-category="masakan">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="Sayur Asem Segar" class="editable-img w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-id="menu-4">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-lg text-brand-950">Sayur Asem Segar Mima</h3>
+                                <span class="font-bold text-brand-600 text-base">Rp 15.000</span>
+                            </div>
+                            <p class="text-brand-900/70 text-xs sm:text-sm line-clamp-2 mb-4">Perpaduan sayuran segar lengkap dengan kuah asam manis pedas menyegarkan khas racikan rumahan.</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-brand-100">
+                            <span class="text-xs font-semibold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-md">Masakan Rumah</span>
+                            <button onclick="orderItem('Sayur Asem Segar Mima', 15000)" class="bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow">
+                                <i class="fa-solid fa-cart-shopping"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-md border border-brand-200/60 hover:shadow-xl transition-all flex flex-col" data-category="cemilan">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Kue Bolu Kukus Gula Merah" class="editable-img w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-id="menu-5">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-lg text-brand-950">Bolu Kukus Gula Merah Mekar (Loyang)</h3>
+                                <span class="font-bold text-brand-600 text-base">Rp 45.000</span>
+                            </div>
+                            <p class="text-brand-900/70 text-xs sm:text-sm line-clamp-2 mb-4">Kue bolu tradisional dengan aroma harum gula merah asli, empuk, tanpa pengawet, cocok untuk teman ngeteh.</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-brand-100">
+                            <span class="text-xs font-semibold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-md">Cemilan & Kue</span>
+                            <button onclick="orderItem('Bolu Kukus Gula Merah Mekar', 45000)" class="bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow">
+                                <i class="fa-solid fa-cart-shopping"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="menu-item bg-white rounded-2xl overflow-hidden shadow-md border border-brand-200/60 hover:shadow-xl transition-all flex flex-col" data-category="paket">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Paket Nasi Box Harian" class="editable-img w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-id="menu-6">
+                        <span class="absolute top-3 right-3 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Favorit</span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-serif font-bold text-lg text-brand-950">Paket Nasi Box Rumahan Lengkap</h3>
+                                <span class="font-bold text-brand-600 text-base">Rp 28.000</span>
+                            </div>
+                            <p class="text-brand-900/70 text-xs sm:text-sm line-clamp-2 mb-4">Nasi putih, pilihan lauk (ayam/ikan), tumis sayur segar, sambal, kerupuk, dan buah potong segar dalam kemasan higienis.</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-brand-100">
+                            <span class="text-xs font-semibold text-brand-700 bg-brand-50 px-2.5 py-1 rounded-md">Paket & Box</span>
+                            <button onclick="orderItem('Paket Nasi Box Rumahan Lengkap', 28000)" class="bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-all flex items-center gap-1.5 shadow">
+                                <i class="fa-solid fa-cart-shopping"></i> Pesan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Best Seller Section -->
+    <section id="bestseller" class="py-20 bg-cream-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-brand-600 font-semibold text-sm uppercase tracking-wider block mb-2">Paling Dicari Pelanggan</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-950">Menu Best Seller Pilihan</h2>
+                <p class="text-brand-900/80 mt-2 text-sm sm:text-base">Menu juara yang paling sering dipesan ulang oleh pelanggan setia Dapur Mima Tsabit.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Best 1 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-brand-200/80 relative flex flex-col items-center text-center group hover:-translate-y-1 transition-transform">
+                    <div class="absolute -top-6 bg-brand-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold shadow-md">
+                        #1
+                    </div>
+                    <div class="w-28 h-28 rounded-full overflow-hidden mb-4 mt-2 ring-4 ring-brand-100 shadow">
+                        <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=300&q=80" alt="Nasi Liwet" class="editable-img w-full h-full object-cover group-hover:scale-110 transition-transform" data-id="best-1">
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-brand-950 mb-1">Nasi Liwet Sunda Komplit</h3>
+                    <p class="text-brand-700 text-xs font-medium mb-3">Terjual > 500+ porsi setiap bulan</p>
+                    <p class="text-brand-900/80 text-xs sm:text-sm mb-4">Cita rasa gurih santan meresap sempurna dengan lauk ayam kampung & sambal terasi khas Mima.</p>
+                    <span class="font-bold text-brand-600 text-base mb-4">Rp 35.000 / porsi</span>
+                    <button onclick="orderItem('Nasi Liwet Sunda Komplit', 35000)" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-semibold py-2.5 rounded-xl text-sm shadow transition-all">
+                        Pesan Menu Ini
+                    </button>
+                </div>
+
+                <!-- Best 2 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-brand-200/80 relative flex flex-col items-center text-center group hover:-translate-y-1 transition-transform">
+                    <div class="absolute -top-6 bg-brand-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold shadow-md">
+                        #2
+                    </div>
+                    <div class="w-28 h-28 rounded-full overflow-hidden mb-4 mt-2 ring-4 ring-brand-100 shadow">
+                        <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=300&q=80" alt="Risoles" class="editable-img w-full h-full object-cover group-hover:scale-110 transition-transform" data-id="best-2">
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-brand-950 mb-1">Risoles Ragout Ayam Sayur</h3>
+                    <p class="text-brand-700 text-xs font-medium mb-3">Terjual > 300+ box setiap bulan</p>
+                    <p class="text-brand-900/80 text-xs sm:text-sm mb-4">Cemilan gurih renyah di luar, lembut lumer di dalam. Sangat pas untuk arisan dan santai.</p>
+                    <span class="font-bold text-brand-600 text-base mb-4">Rp 25.000 / box</span>
+                    <button onclick="orderItem('Risoles Ragout Ayam Sayur (Isi 5)', 25000)" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-semibold py-2.5 rounded-xl text-sm shadow transition-all">
+                        Pesan Menu Ini
+                    </button>
+                </div>
+
+                <!-- Best 3 -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-brand-200/80 relative flex flex-col items-center text-center group hover:-translate-y-1 transition-transform">
+                    <div class="absolute -top-6 bg-brand-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold shadow-md">
+                        #3
+                    </div>
+                    <div class="w-28 h-28 rounded-full overflow-hidden mb-4 mt-2 ring-4 ring-brand-100 shadow">
+                        <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=300&q=80" alt="Ayam Lengkuas" class="editable-img w-full h-full object-cover group-hover:scale-110 transition-transform" data-id="best-3">
+                    </div>
+                    <h3 class="font-serif font-bold text-xl text-brand-950 mb-1">Ayam Goreng Lengkuas</h3>
+                    <p class="text-brand-700 text-xs font-medium mb-3">Terjual > 250+ ekor setiap bulan</p>
+                    <p class="text-brand-900/80 text-xs sm:text-sm mb-4">Ayam empuk berbumbu rempah meresap dengan taburan serundeng lengkuas gurih nan harum.</p>
+                    <span class="font-bold text-brand-600 text-base mb-4">Rp 75.000 / ekor</span>
+                    <button onclick="orderItem('Ayam Goreng Lengkuas (1 Ekor)', 75000)" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-semibold py-2.5 rounded-xl text-sm shadow transition-all">
+                        Pesan Menu Ini
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni & Ulasan Section -->
+    <section id="testimoni" class="py-20 bg-cream-100/60 border-t border-brand-200/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-brand-600 font-semibold text-sm uppercase tracking-wider block mb-2">Testimoni & Ulasan</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-950">Apa Kata Pelanggan Setia Kami?</h2>
+                <p class="text-brand-900/80 mt-2 text-sm sm:text-base">Kepuasan rasa dan kebersihan adalah kebanggaan kami. Berikut ulasan nyata dari pelanggan.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testi 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-brand-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-500 mb-4 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-brand-900/80 text-sm italic mb-6">"Masya Allah, nasi liwet dan ayam gorengnya bener-bener berasa masakan rumahan otentik! Sambalnya juara pedas gurihnya pas banget di lidah keluarga."</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-cream-200">
+                        <div class="w-10 h-10 rounded-full bg-brand-200 flex items-center justify-center font-bold text-brand-800 text-sm">
+                            AN
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-950 text-sm">Ibu Anisa Rahma</h4>
+                            <p class="text-xs text-brand-600">Pelanggan Tetap Bogor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-brand-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-500 mb-4 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-brand-900/80 text-sm italic mb-6">"Pesan risoles ragout buat arisan keluarga, ludes dalam hitungan menit! Kulitnya renyah isiannya padat creamy. Pasti repeat order lagi mima!"</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-cream-200">
+                        <div class="w-10 h-10 rounded-full bg-brand-200 flex items-center justify-center font-bold text-brand-800 text-sm">
+                            DH
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-950 text-sm">Bapak Dodi Hendrawan</h4>
+                            <p class="text-xs text-brand-600">Pecinta Cemilan Rumahan</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testi 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-brand-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-500 mb-4 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-brand-900/80 text-sm italic mb-6">"Sangat terbantu waktu ada acara syukuran mendadak. Nasi box dikirim tepat waktu, porsinya pas, rasa masakan lezat bersih higienis. Terima kasih Dapur Mima!"</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-cream-200">
+                        <div class="w-10 h-10 rounded-full bg-brand-200 flex items-center justify-center font-bold text-brand-800 text-sm">
+                            SF
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-950 text-sm">Siti Fatimah, S.Pd</h4>
+                            <p class="text-xs text-brand-600">Pengajar & Warga Setempat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pemesanan Online & WhatsApp Direct Form Section -->
+    <section id="pesan" class="py-20 bg-cream-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-brand-600 font-semibold text-sm uppercase tracking-wider block mb-2">Pesan Sekarang</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-950">Pilih Saluran Pemesanan Favorit Anda</h2>
+                <p class="text-brand-900/80 mt-2 text-sm sm:text-base">Pesan dengan mudah lewat aplikasi ojek online kesayangan atau langsung isi form WhatsApp kami.</p>
+            </div>
+
+            <!-- E-Commerce / Ojol Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+                <!-- GoFood -->
+                <a href="https://gofood.co.id" target="_blank" rel="noopener noreferrer" class="bg-white p-6 rounded-2xl shadow-md border border-brand-200 hover:border-emerald-500 hover:shadow-xl transition-all flex items-center gap-4 group">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl font-bold group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-motorcycle"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-emerald-600 font-bold uppercase tracking-wider block">GoFood by Gojek</span>
+                        <h3 class="font-serif font-bold text-lg text-brand-950 group-hover:text-emerald-700 transition-colors">Dapur Mima Tsabit</h3>
+                        <p class="text-xs text-brand-700 mt-0.5">Buka • Pesan Antar Cepat</p>
+                    </div>
+                </a>
+
+                <!-- GrabFood -->
+                <a href="https://grab.com/id/food" target="_blank" rel="noopener noreferrer" class="bg-white p-6 rounded-2xl shadow-md border border-brand-200 hover:border-emerald-500 hover:shadow-xl transition-all flex items-center gap-4 group">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl font-bold group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-emerald-600 font-bold uppercase tracking-wider block">GrabFood</span>
+                        <h3 class="font-serif font-bold text-lg text-brand-950 group-hover:text-emerald-700 transition-colors">Dapur Mima Tsabit</h3>
+                        <p class="text-xs text-brand-700 mt-0.5">Promo Diskon Tersedia</p>
+                    </div>
+                </a>
+
+                <!-- ShopeeFood -->
+                <a href="https://www.shopeefood.co.id/" target="_blank" rel="noopener noreferrer" class="bg-white p-6 rounded-2xl shadow-md border border-brand-200 hover:border-orange-500 hover:shadow-xl transition-all flex items-center gap-4 group">
+                    <div class="w-14 h-14 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center text-2xl font-bold group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-orange-600 font-bold uppercase tracking-wider block">ShopeeFood</span>
+                        <h3 class="font-serif font-bold text-lg text-brand-950 group-hover:text-orange-700 transition-colors">Dapur Mima Tsabit</h3>
+                        <p class="text-xs text-brand-700 mt-0.5">Banyak Voucher Gratis Ongkir</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- WhatsApp Form Container -->
+            <div id="wa-form" class="bg-white rounded-3xl shadow-xl border border-brand-200 overflow-hidden max-w-4xl mx-auto">
+                <div class="bg-emerald-600 px-6 py-6 text-white text-center">
+                    <h3 class="font-serif text-2xl font-bold mb-1 flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-3xl"></i> Form Pemesanan Langsung ke WhatsApp
+                    </h3>
+                    <p class="text-emerald-100 text-xs sm:text-sm">Pilih menu, tentukan jumlah, dan kirim pesanan Anda langsung ke chat WhatsApp Mima.</p>
+                </div>
+
+                <form id="whatsapp-order-form" onsubmit="sendWhatsAppOrder(event)" class="p-6 sm:p-10 space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-brand-900 mb-2">Nama Lengkap Pemesan *</label>
+                            <input type="text" id="buyer-name" required placeholder="Contoh: Ibu Siti Aminah" class="w-full bg-cream-50 border border-brand-200 rounded-xl px-4 py-3 text-sm text-brand-950 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-brand-900 mb-2">Nomor WhatsApp / HP *</label>
+                            <input type="tel" id="buyer-phone" required placeholder="Contoh: 081316964228" class="w-full bg-cream-50 border border-brand-200 rounded-xl px-4 py-3 text-sm text-brand-950 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-brand-900 mb-2">Pilih Menu Makanan / Cemilan *</label>
+                            <select id="selected-menu" onchange="updatePrice()" class="w-full bg-cream-50 border border-brand-200 rounded-xl px-4 py-3 text-sm text-brand-950 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                <option value="Nasi Liwet Sunda Komplit|35000">Nasi Liwet Sunda Komplit - Rp 35.000</option>
+                                <option value="Ayam Goreng Lengkuas (1 Ekor)|75000">Ayam Goreng Lengkuas (1 Ekor) - Rp 75.000</option>
+                                <option value="Risoles Ragout Ayam Sayur (Isi 5)|25000">Risoles Ragout Ayam Sayur (Isi 5) - Rp 25.000</option>
+                                <option value="Sayur Asem Segar Mima|15000">Sayur Asem Segar Mima - Rp 15.000</option>
+                                <option value="Bolu Kukus Gula Merah Mekar|45000">Bolu Kukus Gula Merah Mekar (Loyang) - Rp 45.000</option>
+                                <option value="Paket Nasi Box Rumahan Lengkap|28000">Paket Nasi Box Rumahan Lengkap - Rp 28.000</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-brand-900 mb-2">Jumlah Porsi / Box *</label>
+                            <input type="number" id="menu-qty" min="1" value="1" oninput="updatePrice()" class="w-full bg-cream-50 border border-brand-200 rounded-xl px-4 py-3 text-sm text-brand-950 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-brand-900 mb-2">Alamat Pengiriman Lengkap *</label>
+                        <textarea id="buyer-address" rows="3" required placeholder="Tuliskan alamat lengkap beserta patokan rumah Anda..." class="w-full bg-cream-50 border border-brand-200 rounded-xl px-4 py-3 text-sm text-brand-950 focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-brand-900 mb-2">Catatan Tambahan (Opsional)</label>
+                        <input type="text" id="buyer-notes" placeholder="Contoh: Tidak pakai pedas / kuah dipisah" class="w-full bg-cream-50 border border-brand-200 rounded-xl px-4 py-3 text-sm text-brand-950 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    </div>
+
+                    <!-- Total Price Display -->
+                    <div class="bg-cream-100 p-4 rounded-xl flex items-center justify-between border border-brand-200">
+                        <span class="font-bold text-brand-900 text-sm sm:text-base">Estimasi Total Harga:</span>
+                        <span id="total-price-display" class="font-serif font-extrabold text-brand-600 text-xl sm:text-2xl">Rp 35.000</span>
+                    </div>
+
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-emerald-600/30 transition-all flex items-center justify-center gap-2 text-base">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span>Kirim Pesanan ke WhatsApp Mima</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lokasi Google Maps & Kontak Section -->
+    <section id="lokasi" class="py-20 bg-cream-100/60 border-t border-brand-200/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-brand-600 font-semibold text-sm uppercase tracking-wider block mb-2">Lokasi & Kontak</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-950">Kunjungi Dapur Kami atau Hubungi Kami</h2>
+                <p class="text-brand-900/80 mt-2 text-sm sm:text-base">Kami siap melayani pesanan harian, acara keluarga, arisan, maupun catering perkantoran.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left: Google Maps Embedded with Direct Navigation Button Overlay -->
                 <div class="space-y-4">
-                    <!-- Review Item 1 -->
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/80 flex gap-4 items-start">
-                        <div class="w-10 h-10 rounded-full bg-emerald-100 text-brand-green font-bold flex items-center justify-center flex-shrink-0">
-                            B
+                    <div class="rounded-2xl overflow-hidden shadow-xl border border-brand-200 h-[360px] w-full relative group">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.315579998492!2d106.7725!3d-6.5985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sNsKwMzUnNTQuNiJTIDEwNsKwNDYnMjEuMCJF!5e0!3m2!1sid!2sid!4v1650000000000!5m2!1sid!2sid" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Lokasi Dapur Mima Tsabit di Google Maps">
+                        </iframe>
+                    </div>
+                    <!-- Tombol Navigasi Langsung ke Google Maps -->
+                    <a href="https://maps.app.goo.gl/zwuiAdMjPkGxcfqA8" target="_blank" rel="noopener noreferrer" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3.5 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+                        <i class="fa-solid fa-diamond-turn-right text-lg"></i>
+                        <span>Buka & Navigasi via Google Maps App</span>
+                    </a>
+                </div>
+
+                <!-- Right: Contact Details -->
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-brand-200 flex items-start gap-4">
+                        <div class="bg-brand-500 text-white w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0 mt-1">
+                            <i class="fa-solid fa-location-dot"></i>
                         </div>
                         <div>
-                            <div class="flex text-amber-400 text-xs mb-1">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <p class="text-stone-700 text-sm italic">"Ayamnya krispi di luar tapi wangi bawang putihnya dapet banget! Sambal ijonya nagih pedas gurih, pas di lidah!"</p>
-                            <span class="text-xs text-stone-400 font-semibold mt-2 block">— Budi S., Jakarta</span>
+                            <h4 class="font-serif font-bold text-lg text-brand-950 mb-1">Alamat Dapur Utama</h4>
+                            <p class="text-brand-900/80 text-sm leading-relaxed">
+                                Pagelaran, Kec. Ciomas, Kabupaten Bogor, Jawa Barat 16610 (Area Sekitar Bogor & Sekitarnya)
+                            </p>
                         </div>
                     </div>
 
-                    <!-- Review Item 2 -->
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-stone-200/80 flex gap-4 items-start">
-                        <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 font-bold flex items-center justify-center flex-shrink-0">
-                            S
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-brand-200 flex items-start gap-4">
+                        <div class="bg-brand-500 text-white w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0 mt-1">
+                            <i class="fa-solid fa-clock"></i>
                         </div>
                         <div>
-                            <div class="flex text-amber-400 text-xs mb-1">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <p class="text-stone-700 text-sm italic">"Sering pesen buat makan siang kantor. Porsinya mantap, ayamnya lembut gak kering, sambalnya jos!"</p>
-                            <span class="text-xs text-stone-400 font-semibold mt-2 block">— Siti N., Bogor</span>
+                            <h4 class="font-serif font-bold text-lg text-brand-950 mb-1">Jam Operasional</h4>
+                            <p class="text-brand-900/80 text-sm leading-relaxed">
+                                Senin - Minggu: 07.00 - 20.00 WIB<br>
+                                <span class="text-emerald-600 font-semibold">Buka Setiap Hari (Melayani Pesanan Harian & Acara)</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-brand-200 flex items-start gap-4">
+                        <div class="bg-brand-500 text-white w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0 mt-1">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-serif font-bold text-lg text-brand-950 mb-1">Kontak & WhatsApp</h4>
+                            <p class="text-brand-900/80 text-sm leading-relaxed">
+                                WhatsApp: 0813-1696-4228 <br>
+                                Email: info@dapurmimatsabit.com
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -299,56 +739,240 @@
         </div>
     </section>
 
-    <!-- CTA ORDER SECTION -->
-    <section class="py-16 bg-gradient-to-r from-emerald-800 to-brand-green text-white px-4 text-center">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Lapar? Langsung Pesan Sekarang!</h2>
-            <p class="text-emerald-100 text-base md:text-lg mb-8 leading-relaxed">
-                Siap melayani pesanan harian, acara keluarga, hingga catering kantor. Siap kirim langsung ke tempat Anda!
-            </p>
-            <a href="https://wa.me/6281234567890?text=Halo%20Dapur%20Mima%20Tsabit,%20saya%20ingin%20memesan%20Ayam%20Goreng%20Bawang%20Putih%20Sambal%20Ijo!" 
-               target="_blank"
-               class="inline-flex items-center gap-3 bg-amber-400 hover:bg-amber-300 text-stone-950 font-extrabold px-9 py-4 rounded-full text-lg shadow-2xl transition-all duration-300 hover:scale-105">
-                <i class="fab fa-whatsapp text-2xl"></i>
-                Pesan Langsung via WhatsApp
-            </a>
-        </div>
-    </section>
+    <!-- Footer -->
+    <footer class="bg-brand-950 text-cream-100 pt-16 pb-12 border-t border-brand-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                <!-- Col 1: Brand Info -->
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <img src="Logo.png" alt="Dapur Mima Tsabit" class="w-12 h-12 rounded-full object-cover ring-2 ring-brand-500">
+                        <span class="font-serif font-bold text-2xl text-cream-50">Dapur Mima Tsabit</span>
+                    </div>
+                    <p class="text-cream-200/80 text-sm leading-relaxed max-w-md">
+                        Penyedia masakan rumahan tradisional, lauk pauk segar, cemilan, dan kue buatan rumah berkualitas tinggi yang dibuat dengan sepenuh hati untuk keluarga tercinta.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-brand-900 hover:bg-brand-500 text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-brand-900 hover:bg-brand-500 text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-brand-900 hover:bg-emerald-600 text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
 
-    <!-- FOOTER -->
-    <footer class="bg-stone-950 text-stone-400 py-8 px-4 text-center text-sm border-t border-stone-800">
-        <div class="max-w-5xl mx-auto space-y-3">
-            <p class="font-bold text-stone-200">DAPUR MIMA TSABIT © 2026</p>
-            <p class="text-xs text-stone-500">Sajian Ayam Goreng Bawang Putih Sambal Ijo Terlezat untuk Keluarga Anda.</p>
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="font-serif font-bold text-lg text-cream-50 mb-4">Navigasi Cepat</h4>
+                    <ul class="space-y-2.5 text-sm text-cream-200/80">
+                        <li><a href="#beranda" class="hover:text-brand-400 transition-colors">Beranda</a></li>
+                        <li><a href="#profil" class="hover:text-brand-400 transition-colors">Profil & Sejarah</a></li>
+                        <li><a href="#menu" class="hover:text-brand-400 transition-colors">Menu & Harga</a></li>
+                        <li><a href="#bestseller" class="hover:text-brand-400 transition-colors">Best Seller</a></li>
+                        <li><a href="#testimoni" class="hover:text-brand-400 transition-colors">Ulasan Pelanggan</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Layanan Pemesanan -->
+                <div>
+                    <h4 class="font-serif font-bold text-lg text-cream-50 mb-4">Pemesanan Online</h4>
+                    <ul class="space-y-2.5 text-sm text-cream-200/80">
+                        <li><a href="#pesan" class="hover:text-brand-400 transition-colors">Formulir WhatsApp</a></li>
+                        <li><a href="https://gofood.co.id" target="_blank" rel="noopener noreferrer" class="hover:text-brand-400 transition-colors">GoFood</a></li>
+                        <li><a href="https://grab.com" target="_blank" rel="noopener noreferrer" class="hover:text-brand-400 transition-colors">GrabFood</a></li>
+                        <li><a href="https://shopee.co.id" target="_blank" rel="noopener noreferrer" class="hover:text-brand-400 transition-colors">ShopeeFood</a></li>
+                        <li><a href="#lokasi" class="hover:text-brand-400 transition-colors">Google Maps Lokasi</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="pt-8 border-t border-brand-900 text-center text-xs text-cream-300/60">
+                <p>&copy; 2026 Dapur Mima Tsabit. Hak Cipta Dilindungi. Dari Dapur Mima, Untuk Keluarga Tercinta.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- FLOATING WHATSAPP BUTTON (FOR MOBILE EASY ACCESS) -->
-    <a href="https://wa.me/6281234567890?text=Halo%20Dapur%20Mima%20Tsabit,%20saya%20ingin%20memesan%20Ayam%20Goreng%20Bawang%20Putih%20Sambal%20Ijo!" 
-       target="_blank"
-       aria-label="Pesan WhatsApp"
-       class="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl transition-all duration-300 hover:scale-110 pulse-btn border-2 border-white">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- JAVASCRIPT FOR VIDEO PLAYER -->
+    <!-- JavaScript Logic -->
     <script>
-        function togglePlay() {
-            const video = document.getElementById('testiVideo');
-            const btn = document.getElementById('playBtn');
-            if (video.paused) {
-                video.play();
-                btn.style.opacity = '0';
-            } else {
-                video.pause();
-                btn.style.opacity = '1';
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Slideshow Logic
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slide-dot');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === index ? '1' : '0';
+            });
+            dots.forEach((dot, i) => {
+                dot.style.backgroundColor = i === index ? '#ffffff' : 'rgba(255,255,255,0.5)';
+            });
+        }
+
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index;
+            showSlide(currentSlideIndex);
+        }
+
+        // Auto advance slide every 5 seconds
+        setInterval(nextSlide, 5000);
+        showSlide(0);
+
+        // Menu Filter Logic
+        function filterMenu(category) {
+            const items = document.querySelectorAll('.menu-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand-500', 'text-white', 'shadow');
+                btn.classList.add('bg-white', 'text-brand-950', 'border', 'border-brand-200');
+            });
+
+            event.target.classList.remove('bg-white', 'text-brand-950', 'border', 'border-brand-200');
+            event.target.classList.add('bg-brand-500', 'text-white', 'shadow');
+
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Order Item Quick Click from Menu card
+        function orderItem(menuName, price) {
+            const selectElement = document.getElementById('selected-menu');
+            for (let i = 0; i < selectElement.options.length; i++) {
+                if (selectElement.options[i].value.includes(menuName)) {
+                    selectElement.selectedIndex = i;
+                    break;
+                }
+            }
+            document.getElementById('menu-qty').value = 1;
+            updatePrice();
+            
+            // Scroll smoothly to WhatsApp form
+            document.getElementById('pesan').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Update Price Calculation in WhatsApp Form
+        function updatePrice() {
+            const selectElement = document.getElementById('selected-menu');
+            const qtyInput = document.getElementById('menu-qty');
+            const priceDisplay = document.getElementById('total-price-display');
+
+            const selectedValue = selectElement.value;
+            const price = parseInt(selectedValue.split('|')[1]);
+            const qty = parseInt(qtyInput.value) || 1;
+
+            const total = price * qty;
+            priceDisplay.innerText = 'Rp ' + total.toLocaleString('id-ID');
+        }
+
+        // Send WhatsApp Order
+        function sendWhatsAppOrder(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('buyer-name').value;
+            const phone = document.getElementById('buyer-phone').value;
+            const selectElement = document.getElementById('selected-menu');
+            const selectedMenuName = selectElement.value.split('|')[0];
+            const qty = document.getElementById('menu-qty').value;
+            const address = document.getElementById('buyer-address').value;
+            const notes = document.getElementById('buyer-notes').value || '-';
+            
+            const price = parseInt(selectElement.value.split('|')[1]);
+            const total = price * qty;
+
+            const waMessage = `Halo Dapur Mima Tsabit, saya ingin memesan menu berikut:%0A%0A` +
+                              `*Nama:* ${name}%0A` +
+                              `*No HP:* ${phone}%0A` +
+                              `*Menu:* ${selectedMenuName}%0A` +
+                              `*Jumlah:* ${qty} porsi/box%0A` +
+                              `*Total Harga:* Rp ${total.toLocaleString('id-ID')}%0A` +
+                              `*Alamat Pengiriman:* ${address}%0A` +
+                              `*Catatan:* ${notes}%0A%0A` +
+                              `Mohon segera diproses ya Mima, terima kasih!`;
+
+            // Dapur Mima Tsabit WhatsApp Number (Placeholder example number)
+            const waNumber = "6281316964228";
+            const waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
+
+            window.open(waUrl, '_blank');
+        }
+
+        // Initialize price on load
+        updatePrice();
+
+        // Image Manager Functionality
+        function toggleImageManager() {
+            const modal = document.getElementById('image-manager-modal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                populateImageInputs();
             }
         }
 
-        // Re-show button when video ends
-        document.getElementById('testiVideo').addEventListener('ended', function() {
-            document.getElementById('playBtn').style.opacity = '1';
-        });
+        function populateImageInputs() {
+            const container = document.getElementById('image-inputs-container');
+            container.innerHTML = '';
+            
+            const editableImages = document.querySelectorAll('.editable-img');
+            editableImages.forEach((img, index) => {
+                const id = img.getAttribute('data-id') || 'img-' + index;
+                const src = img.src;
+                const alt = img.alt || 'Gambar ' + (index + 1);
+
+                const div = document.createElement('div');
+                div.className = 'bg-cream-50 p-4 rounded-xl border border-brand-200 flex flex-col sm:flex-row items-center gap-4';
+                
+                div.innerHTML = `
+                    <img src="${src}" alt="Preview" class="w-16 h-16 rounded-lg object-cover border border-brand-200 shrink-0">
+                    <div class="flex-grow w-full">
+                        <label class="block text-xs font-bold uppercase text-brand-900 mb-1">${alt} (${id})</label>
+                        <input type="url" id="input-${id}" value="${src}" class="w-full bg-white border border-brand-200 rounded-lg px-3 py-2 text-xs text-brand-950 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function applyNewImages() {
+            const editableImages = document.querySelectorAll('.editable-img');
+            editableImages.forEach((img, index) => {
+                const id = img.getAttribute('data-id') || 'img-' + index;
+                const input = document.getElementById('input-' + id);
+                if (input && input.value.trim() !== '') {
+                    img.src = input.value.trim();
+                }
+            });
+            toggleImageManager();
+        }
     </script>
 </body>
 </html>
